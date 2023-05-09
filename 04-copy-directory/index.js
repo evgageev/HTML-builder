@@ -1,8 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 
-fs.mkdir(path.join(__dirname, 'files-copy'), { recursive: true }, (err) => {
+fs.mkdir(path.join(__dirname, 'files-copy'), { recursive: true }, () => {
+  console.log('Создали папку');
+});
+
+fs.readdir(path.join(__dirname, 'files-copy'), 'utf8', (err, files) => {
   if (err) throw err;
+  files.forEach((file) => {
+    const copyFilePath = path.join(__dirname, 'files-copy', `${file}`);
+    fs.unlink(copyFilePath, (err) => {
+      if (err) throw err;
+    });
+  });
 });
 
 fs.readdir(
