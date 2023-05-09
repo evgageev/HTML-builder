@@ -13,7 +13,7 @@ const writableStream = fs.createWriteStream(
   'utf-8'
 );
 
-stdout.write('Hello!\n');
+stdout.write('Hello! Enter your text...\n');
 rl.on('line', (line) => {
   if (line === 'exit') {
     rl.close();
